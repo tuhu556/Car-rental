@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.book-date{
+    margin: auto;
+    width: 50%;
+    border: 3px solid #ffff00;
+    padding: 10px;
+}
+.footer {
+  height: 50px;
+  margin-top: 600px;
+}
