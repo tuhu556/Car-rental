@@ -57,8 +57,8 @@ public class SearchController extends HttpServlet {
             if (index == null) {
                 index = "1";
             }
-            if (Date.valueOf(endDate).getTime() - Date.valueOf(startDate).getTime() < 0) {
-                request.setAttribute("ERROR_DATE", "End Date cannot less than Start Date");
+            if (Date.valueOf(endDate).getTime() - Date.valueOf(startDate).getTime() <= 0) {
+                request.setAttribute("ERROR_DATE", "End Date cannot less than or equal to Start Date");
             } else {
                 int indexPage = Integer.parseInt(index);
                 CarDAO dao = new CarDAO();

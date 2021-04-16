@@ -29,8 +29,8 @@
                 </form>
             </center>
             <center><h2>${requestScope.ERROR_LIST}</h2></center>
-            <c:set var="list" value="${requestScope.HISTORY}"></c:set>
-            <c:if test="${not empty list}">
+                    <c:set var="list" value="${requestScope.HISTORY}"></c:set>
+                    <c:if test="${not empty list}">
                 <table class="table table-striped" border="1">
                     <thead>
                         <tr>
@@ -56,9 +56,16 @@
                             <input type="hidden" name="orderID" value="${history.orderID}">
                             <td><button type="submit" class="btn btn-warning">Detail</button></td>
                         </form>
-                        <form action="CancelOrderController" method="POST">
+                        <script>
+                            function accept() {
+                                if (confirm("Are you sure to cancel this order?") === true) {
+                                    document.getElementById('submit').submit();
+                                }
+                            }
+                        </script>
+                        <td><button onclick="accept()" class="btn btn-danger">Cancel Order</button></td>
+                        <form action="CancelOrderController" method="POST" id="submit">
                             <input type="hidden" name="orderID" value="${history.orderID}">
-                            <td><button type="submit" class="btn btn-danger">Cancel Order</button></td>
                         </form>
                         </tr>
                     </c:forEach>
