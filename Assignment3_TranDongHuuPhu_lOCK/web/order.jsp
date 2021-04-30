@@ -23,7 +23,7 @@
         </header>
        <main>
            <center><h1>${requestScope.ORDER}</h1><br>
-               <a href="carPage.jsp">Continue Shopping!</a>
+               <a href="carPage">Continue Shopping!</a>
            </center>
            
         </main>

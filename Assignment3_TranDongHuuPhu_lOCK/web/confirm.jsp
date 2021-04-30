@@ -18,10 +18,10 @@
             <div class="container">
                 <div class="signup-content">
                     <div class="signup-form">
-                        <a href="carPage.jsp">Back to home page</a>
+                        <a href="carPage">Back to home page</a>
                         <h2 class="form-title">Confirm Code</h2>
                         <p>Your Account has been created, We have sent code to your email, Please check it out!</p>
-                        <form action="ConfirmCodeEmailController" method="POST" class="register-form" id="register-form">
+                        <form action="ConfirmCodeEmail" method="POST" class="register-form" id="register-form">
                             <input type="hidden" value="${sessionScope.EMAIL}" name="email">
                             <div class="form-group">
                                 <label for="name"><i class="fas fa-user"></i></label>
@@ -30,7 +30,7 @@
                             <p class="text-danger">${requestScope.ERROR_CODE}</p>
                             <input type="submit" name="btnAction" value="Submit" id="signin" class="form-submit"/>
                         </form>
-                        <form action="ResendCodeEmailController" method="POST">
+                        <form action="ResendCodeEmail" method="POST">
                             <input type="hidden" value="${sessionScope.EMAIL}" name="email">
                             <input type="submit" name="btnAction" value="Resend" id="signin" class="form-submit"/>
                         </form>

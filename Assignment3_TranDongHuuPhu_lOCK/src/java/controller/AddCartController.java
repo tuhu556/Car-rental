@@ -23,8 +23,8 @@ import org.apache.log4j.Logger;
  */
 public class AddCartController extends HttpServlet {
 
-    private static final String SUCCESS = "cart.jsp";
-    private static final String ERROR = "login.jsp";
+    private static final String SUCCESS = "cart-page";
+    private static final String ERROR = "login-page";
     private static final Logger LOG = Logger.getLogger(AddCartController.class);
 
     /**

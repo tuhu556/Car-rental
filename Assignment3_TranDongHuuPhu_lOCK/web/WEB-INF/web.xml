@@ -177,9 +177,6 @@
         <param-name>log4j-config-location</param-name>
         <param-value>WEB-INF/log4j.properties</param-value>
     </context-param>
-    <welcome-file-list>
-        <welcome-file>BeginPageController</welcome-file>
-    </welcome-file-list>
     <resource-ref>
         <res-ref-name>dbCon</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>

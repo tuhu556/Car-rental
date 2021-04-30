@@ -51,7 +51,7 @@
             </c:if> 
             <c:if test="${empty list}">
                 <div class="col-md-7 col-lg-8">
-                    <form action="SubmitFeedbackController" method="POST">
+                    <form action="SubmitFeedback" method="POST">
                         <input type="hidden" name="carID" value="${requestScope.CARID}">
                         <div class="col-12">
                             <label for="text" class="form-label">Content <span class="text-muted">(Optional)</span></label>
@@ -65,7 +65,7 @@
                     </form>
                 </div>
             </c:if>
-            <form action="ViewHistoryController" method="POST">
+            <form action="ViewHistory" method="POST">
                 <button type="submit" class="btn btn-info">Back</button>
             </form>
         </main>

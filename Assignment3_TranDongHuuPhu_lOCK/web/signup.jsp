@@ -20,7 +20,7 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
-                        <form action="SignupController" method="POST" class="register-form" id="register-form">
+                        <form action="Signup" method="POST" class="register-form" id="register-form">
                             <c:set var="error" value="${requestScope.ERROR}"></c:set>
                                 <div class="form-group">
                                     <label for="name"><i class="fas fa-user"></i></label>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="signup-image">
                         <figure><img src="image/car2.jpg" alt="sing up image"></figure>
-                        <a href="login.jsp" class="signup-image-link">I am already member</a>
+                        <a href="login-page" class="signup-image-link">I am already member</a>
                     </div>
                 </div>
             </div>

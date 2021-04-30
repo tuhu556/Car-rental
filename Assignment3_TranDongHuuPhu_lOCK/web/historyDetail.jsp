@@ -53,7 +53,7 @@
                                 <td>${history.startDate}</td>
                                 <td>${history.endDate}</td>
                                 <td>${history.totalDays}</td>
-                        <form action="FeedbackController" method="POST">
+                        <form action="Feedback" method="POST">
                             <input type="hidden" name="carID" value="${history.carID}">
                             <td><button type="submit" class="btn btn-success">Feedback</button></td>
                         </form>
@@ -65,7 +65,7 @@
             <c:if test="${empty list}">
                 <div>No result!</div>
             </c:if>
-            <form action="ViewHistoryController" method="POST">
+            <form action="ViewHistory" method="POST">
                 <button type="submit" class="btn btn-info">Back</button>
             </form>
         </main>

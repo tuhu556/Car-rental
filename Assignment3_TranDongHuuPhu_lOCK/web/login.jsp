@@ -26,13 +26,13 @@
                 <div class="signin-content">
                     <div class="signin-image">
                         <figure><img src="image/car1.jpg" alt="sing up image"></figure>
-                        <a href="signup.jsp" class="signup-image-link">Create an account</a>
-                        <a href="carPage.jsp" class="signup-image-link">Back to Home Page</a>
+                        <a href="signup-page" class="signup-image-link">Create an account</a>
+                        <a href="carPage" class="signup-image-link">Back to Home Page</a>
                     </div>
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign in</h2>
-                        <form action="LoginController" method="POST" class="register-form" id="login-form">
+                        <form action="Login" method="POST" class="register-form" id="login-form">
                             <p class="text-danger" >
                                 ${requestScope.LOGIN_ERROR}
                                 ${requestScope.RE_LOGIN}

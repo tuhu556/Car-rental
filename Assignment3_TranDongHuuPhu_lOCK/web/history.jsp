@@ -23,7 +23,7 @@
         </header>
         <main>
             <center>
-                <form action="SearchOrderController" method="POST">
+                <form action="SearchOrder" method="POST">
                     <input type="date" placeholder="Search" name="search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
@@ -52,7 +52,7 @@
                             <td>${history.totalPrice}</td>
                             <td>${history.orderDate}</td>
                             <td>${history.discountCode}</td>
-                        <form action="ViewHistoryDetailController" method="POST">
+                        <form action="ViewHistoryDetail" method="POST">
                             <input type="hidden" name="orderID" value="${history.orderID}">
                             <td><button type="submit" class="btn btn-warning">Detail</button></td>
                         </form>
@@ -64,7 +64,7 @@
                             }
                         </script>
                         <td><button onclick="accept()" class="btn btn-danger">Cancel Order</button></td>
-                        <form action="CancelOrderController" method="POST" id="submit">
+                        <form action="CancelOrder" method="POST" id="submit">
                             <input type="hidden" name="orderID" value="${history.orderID}">
                         </form>
                         </tr>
@@ -74,7 +74,7 @@
             </c:if> 
             <c:if test="${empty list}">
                 <div>Nothing is here!</div>
-                <div><a href="carPage.jsp">Shopping</a></div>
+                <div><a href="carPage">Shopping</a></div>
             </c:if>
         </main>
     </body>

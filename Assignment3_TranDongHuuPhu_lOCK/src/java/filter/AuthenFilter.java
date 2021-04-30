@@ -10,8 +10,11 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -30,7 +33,9 @@ public class AuthenFilter implements Filter {
 
     private final List<String> USER;
     private final List<String> ADMIN;
-    private final String LOGIN = "login.jsp";
+    private final List<String> GUEST;
+    private final Map<String, String> FUNC;
+    private final String LOGIN = "login-page";
     private final String HOME = "BeginPageController";
     private final String AD = "AD";
     private final String US = "US";
@@ -44,35 +49,86 @@ public class AuthenFilter implements Filter {
     public AuthenFilter() {
         ADMIN = new ArrayList<>();
         USER = new ArrayList<>();
-        USER.add("login.jsp");
-        USER.add("cart.jsp");
-        USER.add("carPage.jsp");
-        USER.add("history.jsp");
-        USER.add("historyDetail.jsp");
-        USER.add("feedback.jsp");
-        USER.add("error.html");
-        USER.add("success.jsp");
-        USER.add("order.jsp");
-        USER.add("AddCartController");
-        USER.add("BeginPageController");
-        USER.add("CancelOrderController");
-        USER.add("CartController");
-        USER.add("ConfirmCodeEmailController");
-        USER.add("ConfirmOrderController");
-        USER.add("DeleteCartController");
-        USER.add("DiscountController");
-        USER.add("FeedbackController");
-        USER.add("LoginController");
-        USER.add("LogoutController");
-        USER.add("ResendCodeEmailController");
-        USER.add("SearchController");
-        USER.add("SearchOrderController");
-        USER.add("SearchOrderDetailController");
-        USER.add("SignupController");
-        USER.add("SubmitFeedbackController");
-        USER.add("UpdateCartController");
-        USER.add("ViewHistoryController");
-        USER.add("ViewHistoryDetailController");
+        GUEST = new ArrayList<>();
+        FUNC = new HashMap<>();
+        USER.add("login-page");
+        USER.add("cart-page");
+        USER.add("carPage");
+        USER.add("history-page");
+        USER.add("historyDetail-page");
+        USER.add("feedback-page");
+        USER.add("error-page");
+        USER.add("success-page");
+        USER.add("order-page");
+        USER.add("AddCart");
+        USER.add("BeginPage");
+        USER.add("CancelOrder");
+        USER.add("Cart");
+        USER.add("ConfirmCodeEmail");
+        USER.add("ConfirmOrder");
+        USER.add("DeleteCart");
+        USER.add("Discount");
+        USER.add("Feedback");
+        USER.add("Login");
+        USER.add("Logout");
+        USER.add("ResendCodeEmail");
+        USER.add("Search");
+        USER.add("SearchOrder");
+        USER.add("SearchOrderDetail");
+        USER.add("Signup");
+        USER.add("SubmitFeedback");
+        USER.add("UpdateCart");
+        USER.add("ViewHistory");
+        USER.add("ViewHistoryDetail");
+        GUEST.add("login-page");
+        GUEST.add("Login");
+        GUEST.add("carPage");
+        GUEST.add("signup-page");
+        GUEST.add("Signup");
+        GUEST.add("BeginPage");
+        GUEST.add("Search");
+        GUEST.add("confirm-page");
+        GUEST.add("ConfirmCodeEmail");
+        GUEST.add("ResendCodeEmail");
+        GUEST.add("AddCart");
+        addfuncToMap();
+    }
+
+    private void addfuncToMap() {
+        FUNC.put("login-page", "login.jsp");
+        FUNC.put("signup-page", "signup.jsp");
+        FUNC.put("confirm-page", "confirm.jsp");
+        FUNC.put("BeginPage", "BeginPageController");
+        FUNC.put("ResendCodeEmail", "ResendCodeEmailController");
+        FUNC.put("AddCart", "AddCartController");
+        FUNC.put("CancelOrder", "CancelOrderController");
+        FUNC.put("Discount", "DiscountController");
+        FUNC.put("history-page", "history.jsp");
+        FUNC.put("BeginPage", "BeginPageController");
+        FUNC.put("SearchOrder", "SearchOrderController");
+        FUNC.put("success-page", "success.jsp");
+        FUNC.put("CancelOrder", "CancelOrderController");
+        FUNC.put("feedback-page", "feedback.jsp");
+        FUNC.put("UpdateCart", "UpdateCartController");
+        FUNC.put("Feedback", "FeedbackController");
+        FUNC.put("Logout", "LogoutController");
+        FUNC.put("Search", "SearchController");
+        FUNC.put("ViewHistory", "ViewHistoryController");
+        FUNC.put("SearchOrderDetail", "SearchOrderDetailController");
+        FUNC.put("ViewHistoryDetail", "ViewHistoryDetailController");
+        FUNC.put("carPage", "carPage.jsp");
+        FUNC.put("error-page", "error.html");
+        FUNC.put("Cart", "CartController");
+        FUNC.put("SubmitFeedback", "SubmitFeedbackController");
+        FUNC.put("Signup", "SignupController");
+        FUNC.put("ConfirmOrder", "ConfirmOrderController");
+        FUNC.put("cart-page", "cart.jsp");
+        FUNC.put("Login", "LoginController");
+        FUNC.put("order-page", "order.jsp");
+        FUNC.put("ConfirmCodeEmail", "ConfirmCodeEmailController");
+        FUNC.put("historyDetail-page", "historyDetail.jsp");
+        FUNC.put("AddCart", "AddCartController");
+        FUNC.put("DeleteCart", "DeleteCartController");
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
@@ -146,34 +202,45 @@ public class AuthenFilter implements Filter {
             String uri = req.getRequestURI();
             if (uri.contains(".jpg") || uri.contains(".png") || uri.contains(".gif") || uri.contains(".css")) {
                 chain.doFilter(request, response);
-            } else if (uri.contains("login.jsp") || uri.contains("LoginController") || uri.contains("SignupController")
-                    || uri.contains("signup.jsp") || uri.contains("BeginPageController") || uri.contains("SearchController")
-                    || uri.contains("confirm.jsp") || uri.contains("ConfirmCodeEmailController") || uri.contains("ResendCodeEmailController")
-                    || uri.contains("login.css") || uri.contains("homePage.css") || uri.contains("AddCartController")) {
-                chain.doFilter(request, response);
-                return;
             }
             int index = uri.lastIndexOf("/");
             String resource = uri.substring(index + 1);
+
             HttpSession session = req.getSession();
-            if (session == null || session.getAttribute("LOGIN_USER") == null) {
-                res.sendRedirect(HOME);
-            } else {
+            String roleID = "GUEST";
+            if (session != null) {
                 UserDTO user = (UserDTO) session.getAttribute("LOGIN_USER");
-                String roleID = user.getRoleID();
-                if (roleID.equalsIgnoreCase(AD) && ADMIN.contains(resource)) {
-                    chain.doFilter(request, response);
-                } else if (roleID.equalsIgnoreCase(US) && USER.contains(resource)) {
-                    chain.doFilter(request, response);
-                } else {
-                    res.sendRedirect(LOGIN);
+                if (user != null) {
+                    roleID = user.getRoleID();
                 }
+            }
+
+            if (resource.equals("")) {
+                resource = HOME;
+            } else if (roleID.equalsIgnoreCase(US)) {
+                resource = getFunction(USER, resource);
+            } else if (roleID.equals("GUEST")){
+                resource = getFunction(GUEST, resource);
+            } 
+
+            if (resource != null) {
+                req.getRequestDispatcher(resource).forward(request, response);
+            } else {
+                chain.doFilter(request, response);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-
+    private String getFunction(List<String> functionList, String resource){
+        String url = "login-page";
+        if (functionList.contains(resource)){
+            url = FUNC.get(resource);
+        } else {
+            url = FUNC.get(url);
+        }
+        return  url;
+    }
     /**
      * Return the filter configuration object for this filter.
      */

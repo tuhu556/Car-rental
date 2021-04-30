@@ -25,7 +25,7 @@
             <c:set var="car" value="${requestScope.LIST}"/>
             <c:set var="categoryMap" value="${sessionScope.CATEGORY}"/> 
             <center>
-                <form action="SearchController">
+                <form action="Search">
                     Car's Name: <input type="text" name="txtSearch" value="${param.txtSearch}"/>
                     Category: <select id="categoryCmb" name="txtCategory">
                         <option value="all">All</option>
@@ -47,7 +47,7 @@
                 <div class="container">
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                         <c:forEach var="c" items="${car}">
-                            <form action="AddCartController" method="POST">
+                            <form action="AddCart" method="POST">
                                 <div class="col">
                                     <div class="card shadow-sm">
                                         <img class="pic-1" src="${c.image}" width="410px" height="250px">
@@ -85,7 +85,7 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 <c:forEach begin="1" end="${requestScope.PAGE }" var="i">
-                                    <c:url var="page" value="SearchController">
+                                    <c:url var="page" value="Search">
                                         <c:param name="txtSearch" value="${requestScope.SEARCH}"></c:param>
                                         <c:param name="txtCategory" value="${requestScope.categoryID}"></c:param>
                                         <c:param name="startDate" value="${requestScope.START}"></c:param>

@@ -26,7 +26,7 @@
             <c:set var="totalPrice" value="${0}"/>
             <c:set var="discountValue" value="${requestScope.VALUE}"/>
             <c:if test="${not empty cart.getCart()}">
-                <form action="DiscountController" method="POST">
+                <form action="Discount" method="POST">
                     Discount Code: <input type="text" name="txtDiscount" value="${param.txtDiscount}"/>
                     <button type="submit" class="btn btn-secondary">Select</button>
                     <div>${requestScope.DISCOUNT_NAME}</div>
@@ -53,7 +53,7 @@
                     </thead>
                     <tbody>
                         <c:forEach var="order" items="${cart.getCart()}" varStatus="counter">
-                        <form action="CartController" method="POST">
+                        <form action="Cart" method="POST">
                             <p class="text-danger" role="alert">${requestScope.ERROR_CART}</p>
                             <tr>
                             <input type="hidden" name="txtCarID" value="${order.value.carID}"/>
@@ -91,7 +91,7 @@
                 </div>
                 <div><p class="text-danger" role="alert">${requestScope.ERROR_ORDER}</p></div>
                     <c:if test="${requestScope.ERROR_CART == NULL}">
-                    <form action="ConfirmOrderController" method="POST">
+                    <form action="ConfirmOrder" method="POST">
                         <input type="hidden" value="${requestScope.CODE}" name="txtCodeDiscount">
                         <input type="hidden" value="${totalPrice}" name="txtTotalPrice">
                         <button type="submit" class="btn btn-success">Confirm Order</button>
@@ -100,7 +100,7 @@
             </c:if> 
             <c:if test="${empty cart.getCart()}">
                 <div>Nothing is here!</div>
-                <div><a href="carPage.jsp">Shopping</a></div>
+                <div><a href="carPage">Shopping</a></div>
             </c:if>
         </main>
     </body>
